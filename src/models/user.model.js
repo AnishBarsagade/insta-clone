@@ -21,6 +21,18 @@ const userSchema = new mongoose.Schema({
     default:
       "https://ik.imagekit.io/vuhev1krk/user-circles-set_78370-4704.avif",
   },
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
 });
 
 const userModel = mongoose.model("users", userSchema);
