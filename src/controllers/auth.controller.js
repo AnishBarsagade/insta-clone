@@ -1,7 +1,9 @@
 const userModel = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+/**
+ * @description for registering a user
+ */
 async function registerController(req, res) {
   const { email, username, password, bio, profileImage } = req.body;
 
@@ -30,6 +32,7 @@ async function registerController(req, res) {
   const token = jwt.sign(
     {
       id: user._id,
+      username: user.username,
     },
     process.env.JWT_SECRET,
     { expiresIn: "1d" },
@@ -46,6 +49,9 @@ async function registerController(req, res) {
   });
 }
 
+/**
+ * @description for login a registered user
+ */
 async function loginController(req, res) {
   const { username, email, password } = req.body;
 
@@ -69,6 +75,7 @@ async function loginController(req, res) {
   const token = jwt.sign(
     {
       id: user._id,
+      username: user.username,
     },
     process.env.JWT_SECRET,
     { expiresIn: "1d" },

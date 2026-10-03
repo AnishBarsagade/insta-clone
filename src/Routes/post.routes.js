@@ -14,7 +14,12 @@ postRouter.post(
   postController.createPostController,
 );
 // GET/api/posts/[protected]
-postRouter.get("/", identifyUser,identifyUser, postController.getPostController);
+postRouter.get(
+  "/",
+  identifyUser,
+  identifyUser,
+  postController.getPostController,
+);
 
 // GET/api/posts/details/:postId
 postRouter.get(
@@ -23,4 +28,13 @@ postRouter.get(
   postController.getPostDetailsController,
 );
 
+/**
+ * @route POST/api/posts/like/:postid
+ * @description like a post if postid is given.
+ */
+postRouter.post(
+  "/like/:postId",
+  identifyUser,
+  postController.likePostController,
+);
 module.exports = postRouter;
