@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const app = express();
 
 //require routes
@@ -10,6 +11,12 @@ const userRouter = require("./Routes/user.routes");
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  }),
+);
 
 // prefixes,using routes
 app.use("/api/auth", authRouter);

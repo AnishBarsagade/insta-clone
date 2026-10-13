@@ -1,8 +1,13 @@
-import React from "react";
-import { useRoutes } from "react-router";
-import { Routes } from "react-router";
-const App = () => {
-  return <></>;
-};
+import AppRoutes from "./AppRoutes";
+import "./style.scss";
+import { AuthProvider } from "./features/auth/auth.context.jsx";
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
+  );
+}
 
 export default App;
