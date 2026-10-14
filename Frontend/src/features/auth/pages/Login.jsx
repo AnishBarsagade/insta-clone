@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "../style/form.scss";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
+
 const Login = () => {
+  //extracted from the custom hook
   const { user, loading, handleLogin } = useAuth();
-  //use states
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,35 +27,33 @@ const Login = () => {
       </main>
     );
   }
-
   return (
     <main>
       <div className="form-container">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <input
-            onChange={(e) => {
+            onInput={(e) => {
               setUsername(e.target.value);
             }}
             type="text"
             name="username"
+            id="username"
             placeholder="Enter username"
           />
           <input
-            onChange={(e) => {
+            onInput={(e) => {
               setPassword(e.target.value);
             }}
             type="password"
             name="password"
+            id="password"
             placeholder="Enter password"
           />
-          <button type="submit">Login </button>
+          <button className="button primary-button">Login</button>
         </form>
         <p>
-          Don't have an account?{" "}
-          <Link className="toggleAuthForm" to="/register">
-            Register
-          </Link>
+          Don't have an account ? <Link to={"/Register"}>Create One.</Link>
         </p>
       </div>
     </main>

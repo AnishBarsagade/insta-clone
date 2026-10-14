@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router";
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
-  //creating the use states
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  //now using the api
-  async function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit() {
+    console.log("hello");
   }
   return (
     <main>
@@ -22,15 +17,17 @@ const Register = () => {
             }}
             type="text"
             name="username"
+            id="username"
             placeholder="Enter username"
           />
           <input
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            type="text"
+            type="email"
             name="email"
-            placeholder="Enter email"
+            id="email"
+            placeholder="Enter email address"
           />
           <input
             onChange={(e) => {
@@ -38,15 +35,13 @@ const Register = () => {
             }}
             type="password"
             name="password"
+            id="password"
             placeholder="Enter password"
           />
-          <button type="submit">Register </button>
+          <button className="button primary-button">Register</button>
         </form>
         <p>
-          Already have an account?
-          <Link className="toggleAuthForm" to="/login">
-            Login
-          </Link>
+          Already have an account ? <Link to={"/login"}>Login to account.</Link>
         </p>
       </div>
     </main>
