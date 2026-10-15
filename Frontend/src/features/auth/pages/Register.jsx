@@ -3,14 +3,33 @@ import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
-  function handleSubmit() {
-    console.log("hello");
+  //using the context
+  const { loading, handleRegister } = useAuth();
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleRegister(username, email, password);
+    navigate("/");
+  };
+
+  if (loading) {
+    return (
+      <main>
+        <h1>Loading....</h1>
+      </main>
+    );
   }
   return (
     <main>
       <div className="form-container">
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
+          {/* two way binding */}
           <input
             onChange={(e) => {
               setUsername(e.target.value);
