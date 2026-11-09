@@ -37,7 +37,11 @@ postRouter.post(
   identifyUser,
   postController.likePostController,
 );
-
+postRouter.post(
+  "/unlike/:postId",
+  identifyUser,
+  postController.unLikePostController,
+);
 /**
  * @route GET/api/posts/feed
  * @description get all the posts created in the DB
